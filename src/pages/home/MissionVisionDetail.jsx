@@ -28,7 +28,7 @@ const MissionVisionDetail = () => {
             </div>
             <div className='flex flex-col md:items-start items-center md:w-1/2 w-full md:order-2 order-1'>
               <h2 className="lg:text-4xl sm:text-3xl text-2xl font-bold mb-8 relative after:absolute after:w-[100%] after:h-[5px] after:bg-red-600 after:content-[''] after:bottom-[-8px] after:rounded-sm after:left-0 before:absolute before:bg-white before:content-[''] before:h-[5px] before:w-[5px] before:bottom-[-8px] before:z-10 animate" data-aos="fade-up" data-aos-duration="1000" data-aos-once='true'>{data.title}</h2>
-              <p className='p-2 bg-gray-100 text-gray-700 sm:text-base text-sm' data-aos="fade-left" data-aos-duration="1000" data-aos-once='true'>{data.description}</p>
+              <p className='p-2 bg-gray-100 text-gray-700 sm:text-base text-sm' data-aos="fade-up" data-aos-duration="1000" data-aos-once='true'>{data.description}</p>
             </div>
           </div>
         </div>
