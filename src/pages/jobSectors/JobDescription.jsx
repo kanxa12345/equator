@@ -3,10 +3,9 @@ import { NavLink, useParams } from 'react-router-dom';
 import JobSectorData from './JobSectorData';
 
 const JobDescription = () => {
-    const { id } = useParams();
-    const jobId = parseInt(id);
-    const data = JobSectorData.find(job => job.id === jobId);
-    const jobDetail = data.jobDetail
+    const { title } = useParams();
+    const data = JobSectorData.filter((job) => job.title === title);
+    console.log(data)
 
     return (
         <>
@@ -23,13 +22,13 @@ const JobDescription = () => {
             </section>
             <section className='py-12'>
                 <div className="container flex flex-col items-center">
-                    <h2 className="lg:text-4xl sm:text-3xl text-2xl font-bold mb-8 relative after:absolute after:w-[100%] after:h-[5px] after:bg-red-600 after:content-[''] after:bottom-[-8px] after:rounded-sm after:left-0 before:absolute before:bg-white before:content-[''] before:h-[5px] before:w-[5px] before:bottom-[-8px] before:z-10 animate" data-aos="fade-up" data-aos-duration="1000" data-aos-once='true'>{data.title}</h2>
+                    <h2 className="lg:text-4xl sm:text-3xl text-2xl font-bold mb-8 relative after:absolute after:w-[100%] after:h-[5px] after:bg-red-600 after:content-[''] after:bottom-[-8px] after:rounded-sm after:left-0 before:absolute before:bg-white before:content-[''] before:h-[5px] before:w-[5px] before:bottom-[-8px] before:z-10 animate" data-aos="fade-up" data-aos-duration="1000" data-aos-once='true'>{data.length > 0 ? data[0].title : ''}</h2>
                     <div className='grid lg:grid-cols-2 grid-cols-1 gap-5'>
-                        {jobDetail.map((jobItem, index) => (
+                        {data.map((jobItem, index) => (
                             <div key={index} className='shadow-[0_0_5px_2px_rgba(0,0,0,0.1)] px-4 py-6 rounded-lg' data-aos="zoom-in" data-aos-duration="1000" data-aos-once='true'>
                                 <div className='flex sm:flex-row flex-col gap-4'>
                                     <div className='sm:w-1/2 w-full'>
-                                        <img className='w-full lg:h-28 md:h-44 lg-28 object-cover' src={data.image} alt={data.title} />
+                                        <img className='w-full lg:h-28 md:h-44 lg-28 object-cover' src={jobItem.imageUrl} alt={jobItem.title} />
                                     </div>
                                     <div className='flex flex-col items-start'>
                                         <h3 className='text-xl font-semibold mb-3'><i className="fa-solid fa-location-dot me-1"></i>{jobItem.country}</h3>

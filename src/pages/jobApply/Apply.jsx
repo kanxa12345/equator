@@ -1,9 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import countryList from 'react-select-country-list';
 
 const Apply = () => {
     const countries = countryList().getData();
+
+    const [formData, setFormData] = useState({
+        name: '',
+        mobile: '',
+        permanentAddress: '',
+        currentAddress: '', // Use camelCase here
+        email: '',
+        country: '',
+        message: '',
+        cv: null,
+        photo: null,
+        passport: null,
+        certificate: null,
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+    const handleFileChange = (e) => {
+        const { name, files } = e.target;
+        setFormData({
+            ...formData,
+            [name]: files[0], // Assuming you only allow selecting one file
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const fileData = {
+            cv: null,
+            photo: null,
+            passport: null,
+            certificate: null,
+        };
+    
+        // Iterate over the form data and process each file
+        for (const fieldName in formData) {
+            const file = formData[fieldName];
+    
+            if (file instanceof File) {
+                // If the field contains a File object (i.e., a file was uploaded)
+                // Generate a URL for the file
+                const fileURL = URL.createObjectURL(file);
+    
+                // Store the URL in the fileData object
+                fileData[fieldName] = fileURL;
+            } else {
+                // If the field does not contain a File object (e.g., text fields)
+                // Simply store the value as is
+                fileData[fieldName] = formData[fieldName];
+            }
+        }
+    
+        // Display the file URLs or other form data in the console
+        console.log(fileData);
+    
+        // Display a success message
+        alert('Form submitted successfully!');
+    };
+    
+
+
     return (
         <>
             <section className='sm:py-24 py-16 relative'>
@@ -21,35 +87,39 @@ const Apply = () => {
                 <div className="container flex flex-col items-center">
                     <h2 className="lg:text-4xl sm:text-3xl text-2xl font-bold mb-8 relative after:absolute after:w-[100%] after:h-[5px] after:bg-red-600 after:content-[''] after:bottom-[-8px] after:rounded-sm after:left-0 before:absolute before:bg-white before:content-[''] before:h-[5px] before:w-[5px] before:bottom-[-8px] before:z-10 animate" data-aos="fade-up" data-aos-duration="1000" data-aos-once='true'>Apply Now</h2>
                     <div className='w-full shadow-[0_0_20px_1px_rgba(0,0,0,0.1)] p-6 rounded-lg'>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className='flex md:flex-row flex-col justify-between items-center gap-4'>
                                 <div className='flex flex-col items-start w-full' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label className='mb-1 relative' htmlFor="name">Name<i className="fa-sharp fa-solid fa-star absolute top-1.5 right-[-8px] text-red-600" style={{ fontSize: '5px' }}></i></label>
-                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="text" id='name' name='name' placeholder='Your Name' required />
+                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="text" id='name' name='name' placeholder='Your Name' required value={formData.name}
+                                        onChange={handleInputChange} />
                                 </div>
                                 <div className='flex flex-col items-start w-full' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label className='mb-1 relative' htmlFor="mobile">Mobile No.<i className="fa-sharp fa-solid fa-star absolute top-1.5 right-[-8px] text-red-600" style={{ fontSize: '5px' }}></i></label>
-                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="tel" id='mobile' name='mobile' placeholder='Your Mobile No.' required />
+                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="tel" id='mobile' name='mobile' placeholder='Your Mobile No.' required value={formData.mobile}
+                                        onChange={handleInputChange} />
                                 </div>
                             </div>
                             <div className='flex md:flex-row flex-col justify-between items-center gap-4 my-6'>
                                 <div className='flex flex-col items-start w-full' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label className='mb-1 relative' htmlFor="permanent-address">Permanent Address<i className="fa-sharp fa-solid fa-star absolute top-1.5 right-[-8px] text-red-600" style={{ fontSize: '5px' }}></i></label>
-                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="text" id='permanent-address' name='permanent' placeholder='Permanent Address' required />
+                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="text" id='permanent-address' name='permanentAddress' placeholder='Permanent Address' required value={formData.permanentAddress} onChange={handleInputChange} />
                                 </div>
                                 <div className='flex flex-col items-start w-full' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label className='mb-1 relative' htmlFor="current-address">Current Address<i className="fa-sharp fa-solid fa-star absolute top-1.5 right-[-8px] text-red-600" style={{ fontSize: '5px' }}></i></label>
-                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="text" id='current-address' name='current-address' placeholder='Current Address' required />
+                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="text" id='current-address' name='currentAddress' placeholder='Current Address' required value={formData.currentAddress} onChange={handleInputChange} />
                                 </div>
                             </div>
                             <div className='flex md:flex-row flex-col justify-between items-center gap-4 my-6'>
                                 <div className='flex flex-col items-start w-full' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label className='mb-1 relative' htmlFor="email">Email<i className="fa-sharp fa-solid fa-star absolute top-1.5 right-[-8px] text-red-600" style={{ fontSize: '5px' }}></i></label>
-                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="email" id='email' name='email' placeholder='Your Email' required />
+                                    <input className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' type="email" id='email' name='email' placeholder='Your Email' required value={formData.email}
+                                        onChange={handleInputChange} />
                                 </div>
                                 <div className='flex flex-col items-start w-full' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label className='mb-1' htmlFor="country">Select Country</label>
-                                    <select className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' id='country' name='country'>
+                                    <select className='p-3 bg-gray-200 rounded focus:outline outline-red-600 w-full' id='country' name='country' value={formData.country}
+                                        onChange={handleInputChange}>
                                         {countries.map((country) => (
                                             <option key={country.value} value={country.value}>
                                                 {country.label}
@@ -60,24 +130,25 @@ const Apply = () => {
                             </div>
                             <div className='flex flex-col items-start' data-aos="zoom-in" data-aos-duration="1000" data-aos-once='true'>
                                 <label className='mb-1' htmlFor="message">Message</label>
-                                <textarea className='p-3 bg-gray-200 focus:outline outline-red-600 w-full' type="text" id='message' name='message' rows='5' placeholder='Your Message' />
+                                <textarea className='p-3 bg-gray-200 focus:outline outline-red-600 w-full' type="text" id='message' name='message' rows='5' placeholder='Your Message' value={formData.message}
+                                    onChange={handleInputChange} />
                             </div>
                             <div className='flex md:gap-0 gap-4 md:flex-row flex-col justify-between flex-wrap my-6'>
                                 <div className='flex flex-col items-start md:w-1/3 w-full' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label htmlFor="cv" className='mb-1'>Your CV</label>
-                                    <input type="file" id='cv' name='cv' className='text-gray-700 w-full' />
+                                    <input type="file" id='cv' name='cv' className='text-gray-700 w-full' onChange={handleFileChange} />
                                 </div>
                                 <div className='flex flex-col items-start md:w-1/3 w-full' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label htmlFor="photo" className='mb-1'>Your passport sized photo</label>
-                                    <input type="file" id='photo' name='photo' className='text-gray-700 w-full' />
+                                    <input type="file" id='photo' name='photo' className='text-gray-700 w-full' onChange={handleFileChange} />
                                 </div>
                                 <div className='flex flex-col items-start md:w-1/3 w-full' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label htmlFor="passport" className='mb-1'>Your scaned passport</label>
-                                    <input type="file" id='passport' name='passport' className='text-gray-700 w-full' />
+                                    <input type="file" id='passport' name='passport' className='text-gray-700 w-full' onChange={handleFileChange} />
                                 </div>
                                 <div className='flex flex-col items-start md:w-1/3 w-full md:mt-4' data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>
                                     <label htmlFor="certificate" className='mb-1'>Your academic certificate</label>
-                                    <input type="file" id='certificate' name='certificate' className='text-gray-700 w-full' />
+                                    <input type="file" id='certificate' name='certificate' className='text-gray-700 w-full' onChange={handleFileChange} />
                                 </div>
                             </div>
                             <div className='flex justify-center'>

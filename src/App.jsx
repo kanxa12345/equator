@@ -51,7 +51,7 @@ function App() {
         <Header />
         <Routes>
           <Route exact path='/' Component={Homepage} />
-          <Route exact path='JobSector/:id' Component={JobDescription} />
+          <Route exact path='JobSector/:title' Component={JobDescription} />
           <Route exact path='/NewspaperVacancy' Component={NewspaperVacancy} />
           <Route exact path='/MissionVision/:id' Component={MissionVisionDetail} />
           <Route exact path='/Apply' Component={Apply} />
