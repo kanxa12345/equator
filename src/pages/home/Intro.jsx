@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Intro = () => {
     return (
-        <section className='py-12'>
+        <section className='py-10'>
             <div className='container flex flex-col items-center'>
                 <h2 className="lg:text-4xl sm:text-3xl text-2xl font-bold mb-8 relative after:absolute after:w-[100%] after:h-[5px] after:bg-red-600 after:content-[''] after:bottom-[-8px] after:rounded-sm after:left-0 before:absolute before:bg-white before:content-[''] before:h-[5px] before:w-[5px] before:bottom-[-8px] before:z-10 animate" data-aos="fade-up" data-aos-duration="1000" data-aos-once='true'>About Us</h2>
                 <div data-aos="fade-right" data-aos-duration="1000" data-aos-once='true'>

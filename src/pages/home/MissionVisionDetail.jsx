@@ -20,7 +20,7 @@ const MissionVisionDetail = () => {
           </ul>
         </div>
       </section>
-      <section className='py-12'>
+      <section className='py-10'>
         <div className="container">
           <div className="flex md:flex-row flex-col gap-6">
             <div className='md:w-1/2 w-full md:order-1 order-2'>

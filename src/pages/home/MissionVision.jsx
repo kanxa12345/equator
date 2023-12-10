@@ -5,7 +5,7 @@ import Data from './MissionVisionData';
 const MissionVision = () => {
     const data = Data;
     return (
-        <section className='py-12'>
+        <section className='py-10'>
             <div className="container grid md:grid-cols-3 grid-cols-1 gap-4">
                 {data.map((dataItem) => (
                     <div key={dataItem.id} className='text-white' data-aos="zoom-in" data-aos-duration="1000" data-aos-once='true'>

@@ -20,10 +20,10 @@ import WhyChooseUs from './pages/about/WhyChooseUs';
 import MissionVisionDetail from './pages/home/MissionVisionDetail';
 import NewspaperVacancy from './pages/newspaper-vacancy/NewspaperVacancy';
 import AboutNepal from './pages/about/AboutNepal';
-import CurrentDemand from './pages/home/CurrentDemand';
 import JobDescription from './pages/jobSectors/JobDescription';
 import ScrollToTop from './components/ScrollToTop';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import OurTeam from './pages/home/OurTeam';
 
 function App() {
   const animatedRef = useRef(false);
@@ -57,7 +57,7 @@ function App() {
           <Route exact path='/Apply' Component={Apply} />
           <Route exact path='/OrganizationChart' Component={OrganizationChart} />
           <Route exact path='/LegalDocument' Component={LegalDocument} />
-          <Route exact path='/CurrentDemand' Component={CurrentDemand} />
+          <Route exact path='/OurTeam' Component={OurTeam} />
           <Route exact path='/AboutCompany' Component={AboutCompany} />
           <Route exact path='/AboutNepal' Component={AboutNepal} />
           <Route exact path='/MdMessage' Component={MdMessage} />

@@ -17,13 +17,13 @@
   object-fit: cover;
 }
 
-.clients-image {
+/* .clients-image {
   height: 70px !important;
 }
 .clients-image img {
   width: 80% !important;
   object-fit: contain !important;
-}
+} */
 
 .custom-flex {
   display: flex !important;

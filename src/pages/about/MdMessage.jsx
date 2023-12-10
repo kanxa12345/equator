@@ -15,7 +15,7 @@ const MdMessage = () => {
                     </ul>
                 </div>
             </section>
-            <section className='py-12'>
+            <section className='py-10'>
                 <div className="container">
                     <div className='flex flex-col items-center'>
                         <div>

@@ -16,7 +16,8 @@ const SlickSlider = ({ data }) => {
     };
     return (
         <div className='container flex flex-col items-center'>
-            <img className='my-4' src="/src/assets/images/quote.png" alt="quote" />
+            <blockquote className='relative before:absolute before:content-[open-quote] before:font-custom before:text-yellow-400 before:text-[180px] before:left-[-50px] before:top-[-60px] py-10'>
+            </blockquote>
             <div className='md:w-2/3 w-full'>
                 <Slider {...settings}>
                     {data.map((dataItem) => (
